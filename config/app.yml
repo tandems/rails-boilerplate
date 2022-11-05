@@ -1,0 +1,13 @@
+default: &default
+  application_name: 'Rails Boilerplate'
+  default_url_host: 'localhost'
+  default_url_port: 3000
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

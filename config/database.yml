@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  charaset: utf8mb4
+  collation: utf8mb4_general_ci
+  pool:     <%= ENV['RAILS_MAX_THREADS'] %>
+  host:     <%= ENV['DATABASE_HOST'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket:   <%= ENV['DATABASE_SOCKET'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: rails_boilerplate_test
+
+production:
+  <<: *default

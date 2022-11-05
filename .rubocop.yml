@@ -1,0 +1,594 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  DisplayCopNames: true
+  TargetRubyVersion: 2.6
+  Include:
+    - '**/*.rb'
+    - '**/*.rake'
+  Exclude:
+    - 'app/workers/**/*'
+    - 'bin/**/*'
+    - 'bundle/**/*'
+    - 'config/**/*'
+    - 'db/fixtures/**/*'
+    - 'db/migrate/*_devise_create_*.rb'
+    - 'db/migrate/*_active_storage_*'
+    - 'db/schema.rb'
+    - 'lib/tasks/auto_annotate_models.rake'
+    - 'log/**/*'
+    - 'node_modules/**/*'
+    - 'public/**/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'spec/support/committee.rb'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+  SuggestExtensions: false
+
+Rails:
+  Enabled: true
+
+############################################################
+#################### Style ################################
+############################################################
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/AndOr:
+  Description: 'Use &&/|| instead of and/or.'
+  StyleGuide: '#no-and-or-or'
+  Enabled: true
+  EnforcedStyle: conditionals
+
+Style/AsciiComments:
+  Description: 'Use only ascii symbols in comments.'
+  StyleGuide: '#english-comments'
+  Enabled: false
+
+Style/BarePercentLiterals:
+  Description: 'Checks if usage of %() or %Q() matches configuration.'
+  StyleGuide: '#percent-q-shorthand'
+  Enabled: true
+  EnforcedStyle: percent_q
+
+Style/ClassAndModuleChildren:
+  Description: 'Checks style of children classes and modules.'
+  StyleGuide: '#namespace-definition'
+  Enabled: false
+
+Style/ClassCheck:
+  Description: 'Enforces consistent use of `Object#is_a?` or `Object#kind_of?`.'
+  Enabled: true
+  EnforcedStyle: is_a?
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+    - 'db/**/*'
+    - 'app/**/*'
+
+Style/DoubleNegation:
+  Description: 'Checks for uses of double negation (!!).'
+  StyleGuide: '#no-bang-bang'
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/FormatString:
+  Description: 'Enforce the use of Kernel#sprintf, Kernel#format or String#%.'
+  StyleGuide: '#sprintf'
+  Enabled: true
+  EnforcedStyle: format
+
+Style/GuardClause:
+  Description: 'Check for conditionals that can be replaced with guard clauses'
+  StyleGuide: '#no-nested-conditionals'
+  Enabled: false
+  MinBodyLength: 4
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/RaiseArgs:
+  Description: 'Checks the arguments passed to raise/fail.'
+  StyleGuide: '#exception-class-messages'
+  Enabled: true
+  EnforcedStyle: exploded
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+Style/RedundantReturn:
+  Description: "Don't use return where it's not required."
+  StyleGuide: '#no-explicit-return'
+  Enabled: false
+
+Style/RedundantSelf:
+  Description: "Don't use self where it's not needed."
+  StyleGuide: '#no-self-unless-required'
+  Enabled: false
+
+Style/SignalException:
+  Description: 'Checks for proper usage of fail and raise.'
+  StyleGuide: '#prefer-raise-over-fail'
+  Enabled: true
+  EnforcedStyle: only_raise
+
+Style/SlicingWithRange:
+  Enabled: true
+
+Style/StringLiterals:
+  Description: 'Checks if uses of quotes match the configured preference.'
+  StyleGuide: '#consistent-string-literals'
+  Enabled: true
+
+Style/AccessorGrouping:
+  Enabled: true
+
+Style/BisectedAttrAccessor:
+  Enabled: true
+
+Style/CaseLikeIf:
+  Enabled: true
+
+Style/ClassEqualityComparison:
+  Enabled: true
+
+Style/CombinableLoops:
+  Enabled: true
+
+Style/ExplicitBlockArgument:
+  Enabled: true
+
+Style/GlobalStdStream:
+  Enabled: true
+
+Style/HashAsLastArrayItem:
+  Enabled: true
+
+Style/HashLikeCase:
+  Enabled: true
+
+Style/KeywordParametersOrder:
+  Enabled: true
+
+Style/OptionalBooleanParameter:
+  Enabled: true
+
+Style/RedundantAssignment:
+  Enabled: true
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+
+Style/RedundantSelfAssignment:
+  Enabled: true
+
+Style/SingleArgumentDig:
+  Enabled: true
+
+Style/SoleNestedConditional:
+  Enabled: true
+
+Style/StringConcatenation:
+  Enabled: true
+
+############################################################
+###################### Layout ##############################
+############################################################
+Layout/LineLength:
+  Description: 'Limit lines to 80 characters.'
+  StyleGuide: '#80-character-limits'
+  Enabled: true
+  Max: 120
+  Exclude:
+    - 'spec/**/*'
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  Description: >-
+                 Checks that the equals signs in parameter default assignments
+                 have or don't have surrounding space depending on
+                 configuration.
+  StyleGuide: '#spaces-around-equals'
+  Enabled: true
+  EnforcedStyle: space
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/SpaceInsideBlockBraces:
+  Description: >-
+    Checks that block braces have or don't have surrounding space.
+    For blocks taking parameters, checks that the left brace has
+    or doesn't have trailing space.
+  Enabled: true
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: no_space
+  SpaceBeforeBlockParameters: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  Description: "Use spaces inside hash literal braces - or don't."
+  StyleGuide: '#spaces-operators'
+  Enabled: true
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: no_space
+
+Layout/TrailingEmptyLines:
+  Description: 'Checks trailing blank lines and final newline.'
+  StyleGuide: '#newline-eof'
+  Enabled: true
+  EnforcedStyle: final_newline
+
+Layout/EmptyLineBetweenDefs:
+  Description: 'Use empty lines between defs.'
+  StyleGuide: '#empty-lines-between-methods'
+  Enabled: true
+  AllowAdjacentOneLineDefs: true
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/BeginEndAlignment:
+  Enabled: true
+
+Layout/MultilineMethodCallIndentation:
+  Description: >-
+    Checks indentation of method calls with the dot operator
+    that span more than one line.
+  Enabled: true
+  EnforcedStyle: aligned
+
+############################################################
+#################### Naming ################################
+############################################################
+Naming/PredicateName:
+  Description: 'Check the names of predicate methods.'
+  StyleGuide: '#bool-methods-qmark'
+  Enabled: true
+
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+
+
+############################################################
+##################### Lint #################################
+############################################################
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+
+Lint/ConstantDefinitionInBlock:
+  Enabled: true
+
+Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/DuplicateRequire:
+  Enabled: true
+
+Lint/DuplicateRescueException:
+  Enabled: true
+
+Lint/EmptyConditionalBody:
+  Enabled: true
+
+Lint/EmptyFile:
+  Enabled: true
+
+Lint/FloatComparison:
+  Enabled: true
+
+Lint/HashCompareByIdentity:
+  Enabled: true
+
+Lint/IdentityComparison:
+  Enabled: true
+
+Lint/EmptyBlock:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: true
+
+Lint/OutOfRangeRegexpRef:
+  Enabled: true
+
+Lint/RedundantSafeNavigation:
+  Enabled: true
+
+Lint/SelfAssignment:
+  Enabled: true
+
+Lint/TopLevelReturnWithArgument:
+  Enabled: true
+
+Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
+Lint/UnreachableLoop:
+  Enabled: true
+
+Lint/UselessMethodDefinition:
+  Enabled: true
+
+Lint/UselessTimes:
+  Enabled: true
+
+############################################################
+#################### Metrics ###############################
+############################################################
+Metrics/AbcSize:
+  Description: >-
+                 A calculated magnitude based on number of assignments,
+                 branches, and conditions.
+  Reference: 'http://c2.com/cgi/wiki?AbcMetric'
+  Enabled: true
+  Max: 30
+  Exclude:
+    - "db/migrate/**/*"
+
+Metrics/BlockLength:
+  Enabled: true
+  CountComments: false
+  Max: 25
+  IgnoredMethods: []
+  Exclude:
+    - "spec/**/*"
+    - "app/api/**/*"
+
+Metrics/BlockNesting:
+  Description: 'Avoid excessive block nesting'
+  StyleGuide: '#three-is-the-number-thou-shalt-count'
+  Enabled: true
+  Max: 3
+
+Metrics/ClassLength:
+  Description: 'Avoid classes longer than 150 lines of code.'
+  Enabled: true
+  Max: 150
+  Exclude:
+    - 'spec/**/*'
+    - "app/api/**/*"
+
+Metrics/CyclomaticComplexity:
+  Description: >-
+                 A complexity metric that is strongly correlated to the number
+                 of test cases needed to validate a method.
+  Enabled: true
+  Max: 6
+
+Metrics/MethodLength:
+  Description: 'Avoid methods longer than 10 lines of code.'
+  StyleGuide: '#short-methods'
+  Enabled: true
+  Max: 25
+  Exclude:
+    - "db/migrate/*.rb"
+
+Metrics/ModuleLength:
+  Description: 'Avoid modules longer than 100 lines of code.'
+  Enabled: true
+  Max: 100
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/ParameterLists:
+  Description: 'Avoid parameter lists longer than three or four parameters.'
+  StyleGuide: '#too-many-params'
+  Enabled: true
+  Max: 5
+  CountKeywordArgs: true
+
+Metrics/PerceivedComplexity:
+  Description: >-
+                 A complexity metric geared towards measuring complexity for a
+                 human reader.
+  Enabled: true
+  Max: 9
+
+
+############################################################
+##################### Rails ################################
+############################################################
+Rails/Output:
+  Exclude:
+    - 'lib/**/*'
+
+Rails/BulkChangeTable:
+  Enabled: false
+
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+
+Rails/AfterCommitOverride:
+  Enabled: true
+
+Rails/FindById:
+  Enabled: true
+
+Rails/Inquiry:
+  Enabled: true
+
+Rails/MailerName:
+  Enabled: true
+
+Rails/MatchRoute:
+  Enabled: true
+
+Rails/NegateInclude:
+  Enabled: true
+
+Rails/Pluck:
+  Enabled: true
+
+Rails/PluckInWhere:
+  Enabled: true
+
+Rails/RenderInline:
+  Enabled: true
+
+Rails/RenderPlainText:
+  Enabled: true
+
+Rails/ShortI18n:
+  Enabled: true
+
+Rails/SkipsModelValidations:
+  AllowedMethods:
+    - update_all
+    - insert_all
+    - insert_all!
+
+Rails/SquishedSQLHeredocs:
+  Enabled: true
+
+Rails/WhereExists:
+  Enabled: true
+
+Rails/WhereNot:
+  Enabled: true
+
+############################################################
+##################### Performance ##########################
+############################################################
+Performance/Caller:
+  Enabled: false
+
+Performance/CaseWhenSplat:
+  Enabled: true
+
+Performance/Casecmp:
+  Enabled: true
+
+Performance/CompareWithBlock:
+  Enabled: false
+
+Performance/Count:
+  Enabled: true
+
+Performance/Detect:
+  Enabled: true
+
+Performance/DoubleStartEndWith:
+  Enabled: true
+
+Performance/EndWith:
+  Enabled: true
+
+Performance/FixedSize:
+  Enabled: true
+
+Performance/FlatMap:
+  Enabled: true
+
+Performance/InefficientHashSearch:
+  Enabled: true
+
+Performance/OpenStruct:
+  Enabled: true
+
+Performance/RangeInclude:
+  Enabled: false
+
+Performance/RedundantBlockCall:
+  Enabled: false
+
+Performance/RedundantMatch:
+  Enabled: true
+
+Performance/RedundantMerge:
+  Enabled: false
+
+Performance/RegexpMatch:
+  Enabled: true
+
+Performance/ReverseEach:
+  Enabled: true
+
+Performance/Size:
+  Enabled: true
+
+Performance/StartWith:
+  Enabled: true
+
+Performance/StringReplacement:
+  Enabled: true
+
+Performance/TimesMap:
+  Enabled: false
+
+Performance/UnfreezeString:
+  Enabled: true
+
+Performance/UriDefaultParser:
+  Enabled: true
+
+Performance/ChainArrayAllocation:
+  Enabled: false
+
+Performance/AncestorsInclude:
+  Enabled: true
+
+Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+
+Performance/RedundantSortBlock:
+  Enabled: true
+
+Performance/RedundantStringChars:
+  Enabled: true
+
+Performance/ReverseFirst:
+  Enabled: true
+
+Performance/SortReverse:
+  Enabled: true
+
+Performance/Squeeze:
+  Enabled: true
+
+Performance/StringInclude:
+  Enabled: true
+
+Performance/Sum:
+  Enabled: true
